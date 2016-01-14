@@ -45,6 +45,14 @@ Getting Started
  **`data-goto="2"`** trigger to go to page 2.
 
 
+###Events
+
+* **onAnimationStart** - triggered when the animation starts.
+
+* **onAnimationEnd** - triggered when the animation completes.
+
+* **onResetPage** - triggered when the classes on the pages are reset.
+
 ####Sample in action
 
 Adding the **transition.js**
