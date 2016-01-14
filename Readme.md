@@ -72,6 +72,24 @@ Adding the **HTML**
         </div>
     </div>
 
+Initialize the **PageTransitions**
+
+    $(document).ready(function() {
+        // initializing page transition.
+        PageTransitions.init();
+    });
+
+Initialize **PageTransitions** with event handler
+
+    $(document).ready(function() {
+        // initializing page transition.
+        PageTransitions.init({
+            onAnimationEnd: function(page) {
+                // Do something after a page change has occurred.
+            }
+        });
+    });
+
 ##Down the line
 
 * Add single page highlighting all the available animation.

@@ -18,9 +18,11 @@ var PageTransitions = (function () {
         animEndEventName = animEndEventNames[Modernizr.prefixed('animation')],
 
         // support css animations
-        support = Modernizr.cssanimations;
+        support = Modernizr.cssanimations,
 
-    function init() {
+        animOptions = undefined;
+
+    function init(options) {
 
         // Get all the .pt-page div.
         $('.pt-page').each( function() {
@@ -41,6 +43,8 @@ var PageTransitions = (function () {
             $pageTrigger = $(this);
             Animate($pageTrigger);
         });
+
+        animOptions = options;
     }
 
     // All pt-trigger click event calls this function
@@ -371,6 +375,10 @@ var PageTransitions = (function () {
             // Current page to be removed.
             var $currentPage = $pages.eq(currentPageIndex);
 
+            if (animOptions.onAnimationStart !== undefined) {
+                animOptions.onAnimationStart($currentPage);
+            }
+
             // Checking gotoPage value and decide what to do
             // -1 Go to next page
             // -2 Go to previous page
@@ -449,11 +457,17 @@ var PageTransitions = (function () {
     function onEndAnimation($pageWrapper, $nextPage, $currentPage) {
         resetPage($nextPage, $currentPage);
         $pageWrapper.data('isAnimating', false);
+        if (animOptions.onAnimationEnd !== undefined) {
+            animOptions.onAnimationEnd($nextPage);
+        }
     }
 
     function resetPage($nextPage, $currentPage) {
         $currentPage.attr('class', $currentPage.data('originalClassList'));
         $nextPage.attr('class', $nextPage.data('originalClassList') + ' pt-page-current');
+        if (animOptions.onResetPage !== undefined) {
+            animOptions.onResetPage($nextPage);
+        }
     }
 
     return {
@@ -461,8 +475,3 @@ var PageTransitions = (function () {
     };
 
 })();
-
-$(document).ready(function() {
-    // initializing page transition.
-    PageTransitions.init();
-});
