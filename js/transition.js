@@ -375,7 +375,7 @@ var PageTransitions = (function () {
             // Current page to be removed.
             var $currentPage = $pages.eq(currentPageIndex);
 
-            if (animOptions.onAnimationStart !== undefined) {
+            if (animOptions !== undefined && animOptions.onAnimationStart !== undefined) {
                 animOptions.onAnimationStart($currentPage);
             }
 
@@ -457,7 +457,7 @@ var PageTransitions = (function () {
     function onEndAnimation($pageWrapper, $nextPage, $currentPage) {
         resetPage($nextPage, $currentPage);
         $pageWrapper.data('isAnimating', false);
-        if (animOptions.onAnimationEnd !== undefined) {
+        if (animOptions !== undefined && animOptions.onAnimationEnd !== undefined) {
             animOptions.onAnimationEnd($nextPage);
         }
     }
@@ -465,7 +465,7 @@ var PageTransitions = (function () {
     function resetPage($nextPage, $currentPage) {
         $currentPage.attr('class', $currentPage.data('originalClassList'));
         $nextPage.attr('class', $nextPage.data('originalClassList') + ' pt-page-current');
-        if (animOptions.onResetPage !== undefined) {
+        if (animOptions !== undefined && animOptions.onResetPage !== undefined) {
             animOptions.onResetPage($nextPage);
         }
     }
