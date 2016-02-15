@@ -40,8 +40,9 @@ var PageTransitions = (function () {
 
         // Adding click event to .pt-trigger
         $('.pt-trigger').click(function() {
-            $pageTrigger = $(this);
-            Animate($pageTrigger);
+            var animation = $(this).data('animation');
+            var goto = $(this).data('goto');
+            Animate(animation, goto, $(this));
         });
 
         animOptions = options;
@@ -49,19 +50,19 @@ var PageTransitions = (function () {
 
     // All pt-trigger click event calls this function
     // This function gets the animation id, goto page that we define in `data-animation` and 'data-goto' repectively.
-    function Animate($pageTrigger) {
+    function Animate(animation, goto, pageTrigger) {
 
         // Checking for 'data-animation' and 'data-goto' attributes.
-        if (!($pageTrigger.attr('data-animation'))) {
+        if (typeof animation === "undefined") {
             alert("Transition.js : Invalid attribute configuration. \n\n 'data-animation' attribute not found");
             return false;
         }
-        else if (!($pageTrigger.attr('data-goto'))) {
+        else if (typeof goto === "undefined") {
             alert("Transition.js : Invalid attribute configuration. \n\n 'data-goto' attribute not found");
             return false;
         }
 
-        var animation = $pageTrigger.data('animation').toString(),
+        var animation = animation.toString(),
             gotoPage, inClass, outClass, selectedAnimNumber;
 
          // Check if the delimiter '-' is present then create an animation array list.
@@ -351,14 +352,14 @@ var PageTransitions = (function () {
         }
 
         // This will get the pt-trigger elements parent wrapper div
-        var $pageWrapper = $pageTrigger.closest('.pt-wrapper');
+        var $pageWrapper = $(pageTrigger).closest('.pt-wrapper');
         var currentPageIndex = $pageWrapper.data('current'), tempPageIndex,
             $pages = $pageWrapper.children('div.pt-page'),
             pagesCount = $pages.length,
             endCurrentPage = false,
             endNextPage = false;
 
-        gotoPage = parseInt($pageTrigger.data('goto'));
+        gotoPage = parseInt(goto);
 
         // check if 'data-goto' value is greater than total pages inside 'pt-wrapper'
         if (!(pagesCount < gotoPage)) {
