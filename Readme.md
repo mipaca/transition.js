@@ -98,6 +98,31 @@ Initialize **PageTransitions** with event handler
         });
     });
 
+### Options Reference
+
+<table class="reference alternate">
+  <col class="name">
+  <col class="type">
+  <col class="value">
+  <col class="description">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Type</th>
+      <th scope="col">Default Value</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+        <tr>
+            <td class="name"><code>hashIt</code></td>
+            <td class="type"><code><i>boolean</i></code><p><em>true</em> or <em>false</em></td>
+            <td class="value"><code><span class="s">true</span></code></td>
+            <td><p>If true existing href hashes will be appended to the window url.</p></td>
+        </tr>
+  </tbody>
+</table>
+
 ##Down the line
 
 * Add single page highlighting all the available animation.
