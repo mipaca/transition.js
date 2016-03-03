@@ -28,7 +28,7 @@ var PageTransitions = (function () {
         if (animOptions.hashIt == true && window.location.hash.trim() != '') {
             var $currentPage = $(window.location.hash.trim());
             if($currentPage.hasClass('pt-page') == true) {
-                startPageIndex = $($currentPage).index() - 1;
+                startPageIndex = $($currentPage).index();
             }
         }
 
