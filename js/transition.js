@@ -28,7 +28,7 @@ var PageTransitions = (function () {
         if (animOptions.hashIt == true && window.location.hash.trim() != '') {
             var $currentPage = $(window.location.hash.trim());
             if($currentPage.hasClass('pt-page') == true) {
-                startPageIndex = $($currentPage).index() - 1;
+                startPageIndex = $($currentPage).index();
             }
         }
 
@@ -57,7 +57,6 @@ var PageTransitions = (function () {
     // All pt-trigger click event calls this function
     // This function gets the animation id, goto page that we define in `data-animation` and 'data-goto' repectively.
     function Animate($pageTrigger) {
-
         // Checking for 'data-animation' and 'data-goto' attributes.
         if (!($pageTrigger.attr('data-animation'))) {
             alert("Transition.js : Invalid attribute configuration. \n\n 'data-animation' attribute not found");
@@ -432,7 +431,7 @@ var PageTransitions = (function () {
                     $currentPage.off(animEndEventName);
                     endCurrentPage = true;
                     if (endNextPage) {
-                        onEndAnimation($pageWrapper, $nextPage, $currentPage);
+                        onEndAnimation($pageWrapper, $nextPage, $currentPage, $pageTrigger);
                     }
                 });
 
@@ -440,11 +439,9 @@ var PageTransitions = (function () {
                     $nextPage.off(animEndEventName);
                     endNextPage = true;
                     if (endCurrentPage) {
-                        onEndAnimation($pageWrapper, $nextPage, $currentPage);
+                        onEndAnimation($pageWrapper, $nextPage, $currentPage, $pageTrigger);
                     }
                 });
-
-                addHash($pageTrigger);
             }
             else {
                 $pageWrapper.data('isAnimating', false);
@@ -459,14 +456,16 @@ var PageTransitions = (function () {
         if (!support) {
             onEndAnimation($currentPage, $nextPage);
         }
-
     }
 
-    function onEndAnimation($pageWrapper, $nextPage, $currentPage) {
+    function onEndAnimation($pageWrapper, $nextPage, $currentPage, $pageTrigger) {
         resetPage($nextPage, $currentPage);
         $pageWrapper.data('isAnimating', false);
         if (animOptions !== undefined && animOptions.onAnimationEnd !== undefined) {
             animOptions.onAnimationEnd($nextPage);
+        }
+        if(typeof $pageTrigger !== 'undefined') {
+            addHash($pageTrigger);
         }
     }
 
