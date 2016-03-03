@@ -47,7 +47,7 @@ var PageTransitions = (function () {
         });
 
         // Adding click event to .pt-trigger
-        $('body').on('click', '.pt-trigger', function (e) {
+        $('.pt-trigger').click(function (e) {
             e.preventDefault();
             $pageTrigger = $(this);
             Animate($pageTrigger);
