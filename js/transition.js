@@ -25,9 +25,25 @@ var PageTransitions = (function () {
 
         animOptions = setDefaults(options);
 
+        refresh();
+
+        // Adding click event to .pt-trigger
+        $('.pt-trigger').click(function (e) {
+            e.preventDefault();
+            $pageTrigger = $(this);
+            Animate($pageTrigger);
+        });
+
+        $(window).on('hashchange', function() {
+            refresh();
+        });
+    }
+
+    function refresh() {
+        $('.pt-page-current').removeClass('pt-page-current');
         if (animOptions.hashIt == true && window.location.hash.trim() != '') {
             var $currentPage = $(window.location.hash.trim());
-            if($currentPage.hasClass('pt-page') == true) {
+            if ($currentPage.hasClass('pt-page') == true) {
                 startPageIndex = $($currentPage).index();
             }
         }
@@ -44,13 +60,6 @@ var PageTransitions = (function () {
             $wrapperDiv.data('current', startPageIndex);
             $wrapperDiv.data('isAnimating', false);
             $wrapperDiv.children('.pt-page').eq(startPageIndex).addClass('pt-page-current');
-        });
-
-        // Adding click event to .pt-trigger
-        $('.pt-trigger').click(function (e) {
-            e.preventDefault();
-            $pageTrigger = $(this);
-            Animate($pageTrigger);
         });
     }
 
@@ -464,7 +473,7 @@ var PageTransitions = (function () {
         if (animOptions !== undefined && animOptions.onAnimationEnd !== undefined) {
             animOptions.onAnimationEnd($nextPage);
         }
-        if(typeof $pageTrigger !== 'undefined') {
+        if (typeof $pageTrigger !== 'undefined') {
             addHash($pageTrigger);
         }
     }
@@ -507,7 +516,8 @@ var PageTransitions = (function () {
 
     return {
         init: init,
-        animate: Animate
+        animate: Animate,
+        refresh: refresh
     };
 
 })();
