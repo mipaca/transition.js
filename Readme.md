@@ -15,14 +15,14 @@ Features
 Install
 -------
 
-####Install via Bower
+#### Install via Bower
 ```bower install transition.js```
 
 
 Getting Started
 -------
 
-###Page Anatomy
+### Page Anatomy
 
 * **.pt-wrapper** - Add this class to the wrapper div with all the pages and buttons.
 
@@ -45,7 +45,7 @@ Getting Started
  **`data-goto="2"`** trigger to go to page 2.
 
 
-###Events
+### Events
 
 * **onAnimationStart** - triggered when the animation starts.
 
@@ -53,7 +53,7 @@ Getting Started
 
 * **onResetPage** - triggered when the classes on the pages are reset.
 
-####Sample in action
+#### Sample in action
 
 Adding the **transition.js**
 
@@ -123,14 +123,14 @@ Initialize **PageTransitions** with event handler
   </tbody>
 </table>
 
-##Down the line
+## Down the line
 
 * Add single page highlighting all the available animation.
 * Add range for random animation.   
  something like **`data-animation="1:10"`** will make random animation from 1-10.
 * More samples.
 
-###Working with Scroll Navigation and Arrow Key Navigation
+### Working with Scroll Navigation and Arrow Key Navigation
 
 [Download latest jquery.mousewheel](https://github.com/brandonaaron/jquery-mousewheel/tags) for mouse scroll
 
