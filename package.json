@@ -1,0 +1,29 @@
+{
+  "name": "transition.js",
+  "version": "1.0.0",
+  "description": "A simple and elegant single page transition library.",
+  "main": "index.js",
+  "dependencies": {
+    "jquery": "~2.1.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mipaca/transition.js.git"
+  },
+  "keywords": [
+    "page-transition",
+    "page-animation",
+    "transition",
+    "animation"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mipaca/transition.js/issues"
+  },
+  "homepage": "https://github.com/mipaca/transition.js#readme"
+}
